@@ -30,6 +30,9 @@ create table if not exists price_snapshots (
   item_option text,
   price integer not null,
   original_price integer,
+  -- discount wording, limited-day labels etc that didn't fit price/option
+  -- (e.g. "즉시할인 2,000원 적용가"). Only set by the OCR pipeline for now.
+  note text,
   created_at timestamptz not null default now(),
   unique (market_id, scraped_at, item_name, item_option)
 );
